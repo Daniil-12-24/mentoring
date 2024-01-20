@@ -1,11 +1,17 @@
 function changeGreeting() {
-  var userText = document.getElementById("inputText").value;
+  let input = document.getElementById("inputText").value;
+  if (input === "" || !isNaN(input)) {
+    alert("Error");
+    document.getElementById("inputText").value = "";
+  } else {
+    let userText = input;
 
-  var newText = "Hello " + userText + "!";
+    let newText = "Hello " + userText + "!";
 
-  document.getElementById("greeting").innerText = newText;
+    document.getElementById("greeting").innerText = newText;
 
-  document.getElementById("inputText").value = "";
+    document.getElementById("inputText").value = "";
+  }
 }
 
 function resetGreeting() {
