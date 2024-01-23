@@ -1,8 +1,7 @@
 function changeGreeting() {
-  let input = document.getElementById("inputText").value;
-  if (input === "" || !isNaN(input)) {
-    alert("Error");
-    document.getElementById("inputText").value = "";
+  const input = document.getElementById("inputText").value;
+  if (!input || !isNaN(input)) {
+    alert("Error", (document.getElementById("inputText").value = ""));
   } else {
     let userText = input;
 

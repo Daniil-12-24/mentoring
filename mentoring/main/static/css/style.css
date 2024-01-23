@@ -1,0 +1,26 @@
+.wrapper {
+  background-color: rgb(255, 147, 7);
+}
+
+.main {
+  margin-top: 2cap;
+  margin-left: 2cap;
+}
+
+button {
+  width: 60px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 1cap;
+  margin-bottom: 1cap;
+  background-color: aquamarine;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  transition: all 0.1s ease;
+}
+
+button:hover {
+  transform: scale(0.95);
+}
