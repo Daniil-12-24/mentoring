@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greetings</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/indexJS.js' %}"></script>
+  </head>
+  <body>
+    <div class="greetings">
+      <h2>Greetings, {{ user_name }}!</h2>
+      <p>Your count is: {{ user_count }}</p>
+      <a href="{% url 'login' %}">Back</a>
+    </div>
+  </body>
+</html>
