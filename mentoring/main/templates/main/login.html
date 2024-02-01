@@ -29,7 +29,8 @@
         />
         <br />
         <button type="submit" class="form-button">Login</button>
-        <a href="{% url 'signin' %}"> Sign In </a>
+        <a href="{% url 'signin' %}"> Sign In </a><br />
+        <a href="{% url 'index' %}">Back</a>
       </form>
       {% if message %}
       <p>{{ message }}</p>
