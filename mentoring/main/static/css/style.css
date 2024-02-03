@@ -1,10 +1,49 @@
 .wrapper {
   background-color: rgb(255, 147, 7);
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.greetings {
+  background-color: rgb(255, 147, 7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .main {
   margin-top: 2cap;
   margin-left: 2cap;
+}
+
+.profile {
+  background-color: rgb(255, 147, 7);
+}
+
+.login-container,
+.change-container {
+  background-color: rgb(255, 147, 7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.login-form,
+.signin-form {
+  width: 300px;
+  padding: 20px;
+}
+
+.registration-form {
+  display: none;
+}
+
+.form-input {
+  padding: 10px;
+  margin-bottom: 5px;
 }
 
 button {

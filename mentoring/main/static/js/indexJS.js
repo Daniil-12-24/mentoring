@@ -10,3 +10,21 @@ function checkGreeting() {
 function resetGreeting() {
   document.getElementById("greeting").innerText = "Hello User!";
 }
+
+function passCheck() {
+  document
+    .getElementById("signin-form")
+    .addEventListener("submit", function (event) {
+      let passwordInput = document.getElementById("pass");
+      let passwordConfirm = document.getElementById("pass-conf");
+
+      let password = passwordInput.value;
+      let passwordC = passwordConfirm.value;
+
+      if (password !== passwordC) {
+        alert("Passwords doesn`t match!");
+        event.preventDefault();
+        return;
+      }
+    });
+}
