@@ -1,34 +1,27 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mentoring</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <script src="{% static 'js/indexJS.js' %}"></script>
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="main-div">
-        <p id="greeting">{{ greeting_text }}</p>
-        <form id="nameForm" method="post">
-          {% csrf_token %}
-          <label for="text">Write your input please:</label><br />
-          <input
-            type="text"
-            id="inputText"
-            name="name"
-            placeholder="Your text"
-          /><br />
-          <button type="submit" onclick="checkGreeting()">Apply</button>
-          <button type="button" onclick="resetGreeting()">Reset</button>
-          <a href="{% url 'count' %}" class="button">Count</a>
-        </form>
-      </div>
-      <div class="login-block">
-        <a href="{% url 'login' %}">login</a>
-      </div>
-    </div>
-  </body>
-</html>
+{% extends "main/base.html" %}
+<!-- prettier-ignore -->
+{% block title %} Main {% endblock %}
+
+{% block content %}
+<div class="wrapper">
+  <div class="main-div">
+    <p id="greeting">{{ greeting_text }}</p>
+    <form id="nameForm" method="post">
+      {% csrf_token %}
+      <label for="text">Write your input please:</label><br />
+      <input
+        type="text"
+        id="inputText"
+        name="name"
+        placeholder="Your text"
+      /><br />
+      <button type="submit" onclick="checkGreeting()">Apply</button>
+      <button type="button" onclick="resetGreeting()">Reset</button>
+      <a href="{% url 'count' %}" class="button">Count</a>
+    </form>
+  </div>
+  <div class="login-block">
+    <a href="{% url 'login' %}">login</a>
+  </div>
+</div>
+{% endblock %}

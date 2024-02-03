@@ -18,7 +18,12 @@
   margin-left: 2cap;
 }
 
-.login-container {
+.profile {
+  background-color: rgb(255, 147, 7);
+}
+
+.login-container,
+.change-container {
   background-color: rgb(255, 147, 7);
   display: flex;
   justify-content: center;

@@ -33,7 +33,7 @@ def login(request):
 
         try:
             user = user_data.objects.get(login=login, u_password=password)
-            return render(request, 'main/login.html', {'message': 'Success!', 'username': user.login, 'count': user.press_count})
+            return redirect('my_account', user_id=user.id, user_login=login)
         except user_data.DoesNotExist:
             return render(request, 'main/login.html', {'error_message': 'Username or password - invalid!'})
 
@@ -49,9 +49,39 @@ def signin(request):
         user = user_data(login=login, u_password=password, u_email=email, press_count=count)
         user.save()
 
-        return redirect('greetings', user_name=login, user_count=count)
+        main_user = users(u_name=login, press_count=count)
+        main_user.save()
+        
+        return redirect('my_account', user_id=user.id, user_login=login)
 
     return render(request, 'main/signin.html')
 
-def greetings(request, user_name, user_count):
-    return render(request, 'main/greetings.html', {'user_name': user_name, 'user_count': user_count})
+def my_account(request, user_id, user_login):
+    user = user_data.objects.get(id=user_id)
+    return render(request, 'main/my_account.html', {'user': user, 'user_login': user_login})
+
+def edit_profile(request, user_id, user_login):
+    if request.method == 'POST':
+        new_email = request.POST.get('new-email')
+        new_count = request.POST.get('new-count')
+        new_login = request.POST.get('new-login')
+        new_password = request.POST.get('new-password')
+
+        user = user_data.objects.get(id=user_id)
+        user.u_email = new_email
+        user.press_count = new_count
+        user.login = new_login
+        user.u_password = new_password
+        user.save()
+
+        main_user = users.objects.get(u_name=user_login)
+        main_user.press_count = new_count
+        main_user.u_name = new_login
+        main_user.save()
+
+        return redirect('my_account', user_id=user.id, user_login=new_login)
+
+
+    
+    user = user_data.objects.get(id=user_id)
+    return render(request, 'main/edit_profile.html', {'user': user, 'user_login': user_login})

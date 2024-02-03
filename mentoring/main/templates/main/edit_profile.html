@@ -1,40 +1,39 @@
 {% extends "main/base.html" %}
 
 <!--prettier-ignore-->
-{% block title %}Sign In{% endblock %}
+{% block title %}Edit Profile{% endblock %}
 
 {% block content %}
-
-    <div class="login-container">
+    <div class="change-container">
       <form id="signin-form" class="signin-form" action="#" method="post">
         {% csrf_token %}
-        <h2>Registration</h2>
+        <h2>Change your details</h2>
         <input
           type="text"
-          name="user-login"
+          name="new-login"
           class="form-input"
-          placeholder="Create your login"
+          placeholder="Change your login"
           required
         />
         <input
           id='pass'
           type="password"
-          name="user-password"
+          name="new-password"
           class="form-input"
-          placeholder="Create your password"
+          placeholder="Change your password"
           required
         />
         <input
           id='pass-conf'
           type="password"
-          name="user-password"
+          name="new-password-conf"
           class="form-input"
-          placeholder="Confirm your password"
+          placeholder="Change your password"
           required
         />
         <input
           type="email"
-          name="user-email"
+          name="new-email"
           class="form-input"
           placeholder="Your E-Mail"
           required
@@ -42,15 +41,16 @@
         <input
           type="number"
           min='0'
-          name="user-count"
+          name="new-count"
           class="form-input"
-          placeholder="Enter your count amount"
+          placeholder="Change your count amount"
           required
         />
         <br />
-        <button type="submit" onclick='passCheck()'>Create</button>
+        <button type="submit" onclick='passCheck()'>Change</button>
         </button>
       </form>
       <a href="{% url 'index' %}">Back to main</a>
     </div>
+
     {% endblock  %}
