@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import users, user_data
+from django.contrib.sessions.models import Session
 
 def index(request):
     greeting_text = 'Hello User!'
@@ -33,11 +34,26 @@ def login(request):
 
         try:
             user = user_data.objects.get(login=login, u_password=password)
-            return redirect('my_account', user_id=user.id, user_login=login)
+            request.session['user_id'] = user.id
+            request.session['user_login'] = login
+            return redirect('index')
         except user_data.DoesNotExist:
             return render(request, 'main/login.html', {'error_message': 'Username or password - invalid!'})
 
     return render(request, 'main/login.html')
+
+def logout(request):
+    session_key = request.session.session_key
+
+    if session_key:
+        try:
+            session = Session.objects.get(pk=session_key)
+            session.delete()
+        except Session.DoesNotExist:
+            pass
+    
+    return redirect('index')
+    
 
 def signin(request):
     if request.method == 'POST':
@@ -57,8 +73,14 @@ def signin(request):
     return render(request, 'main/signin.html')
 
 def my_account(request, user_id, user_login):
-    user = user_data.objects.get(id=user_id)
-    return render(request, 'main/my_account.html', {'user': user, 'user_login': user_login})
+    user_id = request.session.get('user_id')
+    user_login = request.session.get('user_login')
+
+    if user_id and user_login:
+        user = user_data.objects.get(id=user_id)
+        return render(request, 'main/my_account.html', {'user': user, 'user_login': user_login})
+    else:
+        return redirect('login')
 
 def edit_profile(request, user_id, user_login):
     if request.method == 'POST':
@@ -78,6 +100,8 @@ def edit_profile(request, user_id, user_login):
         main_user.press_count = new_count
         main_user.u_name = new_login
         main_user.save()
+
+        request.session['user_login'] = new_login
 
         return redirect('my_account', user_id=user.id, user_login=new_login)
 
