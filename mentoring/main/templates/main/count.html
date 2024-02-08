@@ -4,15 +4,25 @@
 {% block title %}Count{% endblock %}
 
 {% block content %}
+<div class="topnav">
+  <div class="nav">
+    <h1 class="user-greeting">Hello {{request.session.user_login}}</h1>
+    <a href="{% url 'index' %}">Main</a>
+    <a class="active" href="{% url 'count' %}">Count</a>
+    <!--prettier-ignore-->
+    <a href="{% url 'my_account' user_id=request.session.user_id user_login=request.session.user_login%}">My Account</a>
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+</div>
+
 <div class="wrapper">
   <div class="main">
     <h1>This is your count list!</h1>
     <ul>
       {% for item in data %}
-      <li>{{ item.u_name }} - {{ item.press_count }}</li>
+      <li>{{ item.u_name }} : {{ item.press_count }}</li>
       {% endfor %}
     </ul>
   </div>
-  <a href="{% url 'index' %}">Back to main</a>
 </div>
 {% endblock %}

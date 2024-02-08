@@ -20,6 +20,13 @@
 
 .profile {
   background-color: rgb(255, 147, 7);
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.item {
+  margin: 10px;
 }
 
 .login-container,
@@ -62,4 +69,36 @@ button {
 
 button:hover {
   transform: scale(0.95);
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.topnav .nav {
+  float: right;
+}
+
+.user-greeting {
+  color: white;
 }

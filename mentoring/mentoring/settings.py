@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+SECRET_KEY = '64885cfe16f63e4f5f2d9a3c80184c69d4a55a5abd6e1c9cb9c16f18e833ec10'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
