@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import users, user_data
 from django.contrib.sessions.models import Session
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 
 def index(request):
     greeting_text = 'Hello User!'
@@ -62,13 +64,18 @@ def signin(request):
         email = request.POST.get('user-email')
         count = request.POST.get('user-count')
 
-        user = user_data(login=login, u_password=password, u_email=email, press_count=count)
-        user.save()
+        try:
+            user_data.objects.get(u_email=email)
+            messages.error(request, 'User with this email already exists!')
+            return redirect('signin')
+        except ObjectDoesNotExist:
+            user = user_data(login=login, u_password=password, u_email=email, press_count=count)
+            user.save()
 
-        main_user = users(u_name=login, press_count=count)
-        main_user.save()
-        
-        return redirect('my_account', user_id=user.id, user_login=login)
+            main_user = users(u_name=login, press_count=count)
+            main_user.save()
+            
+            return redirect('my_account', user_id=user.id, user_login=login)
 
     return render(request, 'main/signin.html')
 

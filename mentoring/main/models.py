@@ -11,7 +11,7 @@ class users(models.Model):
 class user_data(models.Model):
     login = models.CharField(max_length=20)
     u_password = models.CharField(max_length=20)
-    u_email = models.CharField(max_length=20)
+    u_email = models.EmailField(max_length=50)
     press_count = models.IntegerField()
     
 

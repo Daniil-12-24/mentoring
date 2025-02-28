@@ -28,3 +28,7 @@ function passCheck() {
       }
     });
 }
+
+function alertExistingEmail() {
+  alert("This email is already existing");
+}
